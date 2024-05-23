@@ -13,6 +13,10 @@
 		BBB65FB52BFED132000396EA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BBB65FB42BFED132000396EA /* Base */; };
 		BBB65FB72BFED133000396EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB65FB62BFED133000396EA /* Assets.xcassets */; };
 		BBB65FBA2BFED133000396EA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BBB65FB92BFED133000396EA /* Base */; };
+		BBFA60772BFEDB4500119FED /* Pare-DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBFA60752BFEDB4500119FED /* Pare-DataModel.xcdatamodeld */; };
+		BBFA607D2BFEDFA300119FED /* VolumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA607C2BFEDFA300119FED /* VolumeData.swift */; };
+		BBFA607F2BFEDFDF00119FED /* PlantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA607E2BFEDFDF00119FED /* PlantData.swift */; };
+		BBFA60812BFEE71200119FED /* SearchPlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA60802BFEE71200119FED /* SearchPlantsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		BBB65FB62BFED133000396EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBB65FB92BFED133000396EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBB65FBB2BFED133000396EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBFA60762BFEDB4500119FED /* Pare-DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Pare-DataModel.xcdatamodel"; sourceTree = "<group>"; };
+		BBFA607C2BFEDFA300119FED /* VolumeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeData.swift; sourceTree = "<group>"; };
+		BBFA607E2BFEDFDF00119FED /* PlantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantData.swift; sourceTree = "<group>"; };
+		BBFA60802BFEE71200119FED /* SearchPlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlantsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +48,7 @@
 		BBB65FA12BFED132000396EA = {
 			isa = PBXGroup;
 			children = (
+				BBFA60742BFEDB2200119FED /* DataModel */,
 				BBB65FAC2BFED132000396EA /* Pare */,
 				BBB65FAB2BFED132000396EA /* Products */,
 			);
@@ -63,8 +72,19 @@
 				BBB65FB62BFED133000396EA /* Assets.xcassets */,
 				BBB65FB82BFED133000396EA /* LaunchScreen.storyboard */,
 				BBB65FBB2BFED133000396EA /* Info.plist */,
+				BBFA60802BFEE71200119FED /* SearchPlantsTableViewController.swift */,
 			);
 			path = Pare;
+			sourceTree = "<group>";
+		};
+		BBFA60742BFEDB2200119FED /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				BBFA60752BFEDB4500119FED /* Pare-DataModel.xcdatamodeld */,
+				BBFA607E2BFEDFDF00119FED /* PlantData.swift */,
+				BBFA607C2BFEDFA300119FED /* VolumeData.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBFA607D2BFEDFA300119FED /* VolumeData.swift in Sources */,
 				BBB65FB22BFED132000396EA /* ViewController.swift in Sources */,
 				BBB65FAE2BFED132000396EA /* AppDelegate.swift in Sources */,
+				BBFA607F2BFEDFDF00119FED /* PlantData.swift in Sources */,
 				BBB65FB02BFED132000396EA /* SceneDelegate.swift in Sources */,
+				BBFA60812BFEE71200119FED /* SearchPlantsTableViewController.swift in Sources */,
+				BBFA60772BFEDB4500119FED /* Pare-DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +385,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BBFA60752BFEDB4500119FED /* Pare-DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BBFA60762BFEDB4500119FED /* Pare-DataModel.xcdatamodel */,
+			);
+			currentVersion = BBFA60762BFEDB4500119FED /* Pare-DataModel.xcdatamodel */;
+			name = "Pare-DataModel.xcdatamodeld";
+			path = "/Users/meng/Documents/Pare/Pare/DataModel/Pare-DataModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BBB65FA22BFED132000396EA /* Project object */;
 }
