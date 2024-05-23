@@ -17,6 +17,7 @@
 		BBFA607D2BFEDFA300119FED /* VolumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA607C2BFEDFA300119FED /* VolumeData.swift */; };
 		BBFA607F2BFEDFDF00119FED /* PlantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA607E2BFEDFDF00119FED /* PlantData.swift */; };
 		BBFA60812BFEE71200119FED /* SearchPlantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA60802BFEE71200119FED /* SearchPlantsTableViewController.swift */; };
+		BBFA60832BFEEE1400119FED /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA60822BFEEE1400119FED /* PlantDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		BBFA607C2BFEDFA300119FED /* VolumeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeData.swift; sourceTree = "<group>"; };
 		BBFA607E2BFEDFDF00119FED /* PlantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantData.swift; sourceTree = "<group>"; };
 		BBFA60802BFEE71200119FED /* SearchPlantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlantsTableViewController.swift; sourceTree = "<group>"; };
+		BBFA60822BFEEE1400119FED /* PlantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				BBB65FAF2BFED132000396EA /* SceneDelegate.swift */,
 				BBB65FB12BFED132000396EA /* ViewController.swift */,
 				BBB65FB32BFED132000396EA /* Main.storyboard */,
+				BBFA60822BFEEE1400119FED /* PlantDetailViewController.swift */,
 				BBB65FB62BFED133000396EA /* Assets.xcassets */,
 				BBB65FB82BFED133000396EA /* LaunchScreen.storyboard */,
 				BBB65FBB2BFED133000396EA /* Info.plist */,
@@ -161,6 +164,7 @@
 				BBFA607D2BFEDFA300119FED /* VolumeData.swift in Sources */,
 				BBB65FB22BFED132000396EA /* ViewController.swift in Sources */,
 				BBB65FAE2BFED132000396EA /* AppDelegate.swift in Sources */,
+				BBFA60832BFEEE1400119FED /* PlantDetailViewController.swift in Sources */,
 				BBFA607F2BFEDFDF00119FED /* PlantData.swift in Sources */,
 				BBB65FB02BFED132000396EA /* SceneDelegate.swift in Sources */,
 				BBFA60812BFEE71200119FED /* SearchPlantsTableViewController.swift in Sources */,

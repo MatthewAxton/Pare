@@ -10,6 +10,10 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Ensure the navigation bar is visible
+        navigationController?.navigationBar.isHidden = false
+        
+        // Set up search controller
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -18,6 +22,10 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
+        // Register the cell identifier
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CELL_PLANT)
+        
+        // Set up indicator
         indicator.style = .large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(indicator)
@@ -75,6 +83,7 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
             
             if let plants = volumeData.plants {
                 newPlants.append(contentsOf: plants)
+                print("Plants fetched: \(newPlants.count)") // Add this line to verify data
                 tableView.reloadData()
             }
         } catch {
@@ -82,4 +91,16 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
             indicator.stopAnimating()
         }
     }
+
+    // Prepare for segue to detail view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPlantDetail",
+           let destinationVC = segue.destination as? PlantDetailViewController,
+           let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.plant = newPlants[indexPath.row]
+        }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+          performSegue(withIdentifier: "showPlantDetail", sender: self)
+      }
 }
