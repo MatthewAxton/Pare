@@ -12,7 +12,7 @@ class PlantDetailViewController: UIViewController {
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var commonNameLabel: UILabel!
     
-    @IBOutlet weak var otherNamesLabel: UILabel!
+
     @IBOutlet weak var scientificNameLabel: UILabel!
     
     @IBOutlet weak var sunlightLabel: UILabel!
@@ -32,7 +32,7 @@ class PlantDetailViewController: UIViewController {
             guard let plant = plant else { return }
             commonNameLabel.text = plant.commonName
             scientificNameLabel.text = plant.scientificName?.joined(separator: ", ")
-            otherNamesLabel.text = plant.otherNames?.joined(separator: ", ")
+           
             cycleLabel.text = plant.cycle
             wateringLabel.text = plant.watering
             sunlightLabel.text = plant.sunlight?.joined(separator: ", ")

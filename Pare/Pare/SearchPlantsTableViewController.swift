@@ -6,6 +6,7 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
     let REQUEST_STRING = "https://perenual.com/api/species-list?key=sk-CPrZ664ea22fa60605611&q="
     var newPlants = [PlantData]()
     var indicator = UIActivityIndicatorView()
+    var isLoadingMorePlants = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,7 +14,7 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         // Ensure the navigation bar is visible
         navigationController?.navigationBar.isHidden = false
         
-        // Set up search controller
+        // Set up the search controller
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -25,7 +26,7 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         // Register the cell identifier
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CELL_PLANT)
         
-        // Set up indicator
+        // Set up the activity indicator
         indicator.style = .large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(indicator)
@@ -33,6 +34,11 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
             indicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
+        
+        // Fetch default plants when the view loads
+        Task {
+            await fetchDefaultPlants()
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,11 +53,14 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_PLANT, for: indexPath)
         let plant = newPlants[indexPath.row]
         cell.textLabel?.text = plant.commonName
-        cell.detailTextLabel?.text = plant.scientificName?.joined(separator: ", ")
+        if let scientificNames = plant.scientificName {
+            cell.detailTextLabel?.text = scientificNames.joined(separator: ", ")
+        }
         return cell
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        // Clear the current plants
         newPlants.removeAll()
         tableView.reloadData()
         
@@ -60,14 +69,15 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         navigationItem.searchController?.dismiss(animated: true)
         indicator.startAnimating()
         
+        // Search for plants with the given name
         Task {
-            await requestPlantsNamed(searchText)
+            await requestPlantsNamed(searchText, page: 1)
         }
     }
 
-    func requestPlantsNamed(_ plantName: String) async {
-        guard let queryString = plantName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let requestURL = URL(string: REQUEST_STRING + queryString) else {
+    func fetchDefaultPlants() async {
+        let defaultPlantURLString = "https://perenual.com/api/species-list?key=sk-CPrZ664ea22fa60605611"
+        guard let requestURL = URL(string: defaultPlantURLString) else {
             print("Invalid URL.")
             return
         }
@@ -75,7 +85,7 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         let urlRequest = URLRequest(url: requestURL)
         
         do {
-            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
             indicator.stopAnimating()
             
             let decoder = JSONDecoder()
@@ -83,7 +93,7 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
             
             if let plants = volumeData.plants {
                 newPlants.append(contentsOf: plants)
-                print("Plants fetched: \(newPlants.count)") // Add this line to verify data
+                print("Default plants fetched: \(newPlants.count)") // Debug log
                 tableView.reloadData()
             }
         } catch {
@@ -92,7 +102,54 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
         }
     }
 
-    // Prepare for segue to detail view
+    func requestPlantsNamed(_ plantName: String, page: Int = 1) async {
+        guard let queryString = plantName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let requestURL = URL(string: "\(REQUEST_STRING + queryString)&page=\(page)") else {
+            print("Invalid URL.")
+            return
+        }
+        
+        let urlRequest = URLRequest(url: requestURL)
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            indicator.stopAnimating()
+            
+            let decoder = JSONDecoder()
+            let volumeData = try decoder.decode(VolumeData.self, from: data)
+            
+            if let plants = volumeData.plants {
+                newPlants.append(contentsOf: plants)
+                print("Plants fetched: \(newPlants.count)") // Debug log
+                tableView.reloadData()
+            }
+        } catch {
+            print(error)
+            indicator.stopAnimating()
+        }
+    }
+    
+    func loadMorePlants() async {
+        isLoadingMorePlants = true
+        let nextPage = (newPlants.count / 20) + 1 // Assuming each page returns 20 plants
+        await requestPlantsNamed("", page: nextPage) // Modify this to include the current search text if needed
+        isLoadingMorePlants = false
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height * 2 {
+            if !isLoadingMorePlants {
+                Task {
+                    await loadMorePlants()
+                }
+            }
+        }
+    }
+
+    // Prepare for segue to the detail view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPlantDetail",
            let destinationVC = segue.destination as? PlantDetailViewController,
@@ -100,7 +157,11 @@ class SearchPlantsTableViewController: UITableViewController, UISearchBarDelegat
             destinationVC.plant = newPlants[indexPath.row]
         }
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-          performSegue(withIdentifier: "showPlantDetail", sender: self)
-      }
+        performSegue(withIdentifier: "showPlantDetail", sender: self)
+    }
+    
+    
+    
 }
