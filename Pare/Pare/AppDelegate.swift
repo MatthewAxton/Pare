@@ -6,21 +6,24 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
-    var databaseController: DatabaseProtocol?
+   var databaseController: DatabaseProtocol?
+ 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        FirebaseApp.configure()
         // Override point for customization after application launch.
        databaseController = FirebaseController()
+        
         return true
     }
+
 
     // MARK: UISceneSession Lifecycle
 

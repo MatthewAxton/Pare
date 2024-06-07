@@ -5,49 +5,44 @@
 //  Created by Matthew Axton Susilo on 3/6/2024.
 //
 
+
+
 import Firebase
 import FirebaseFirestoreSwift
 import FirebaseStorage
 import UIKit
 
 class FirebaseController: NSObject, DatabaseProtocol {
+    func cleanup() {
+
+    }
+    
     var listeners = MulticastDelegate<DatabaseListener>()
     var plantList: [Plant] = []
-    
+
     override init() {
-        // Initialize Firebase authentication and Firestore database
-        FirebaseApp.configure()
-        authController = Auth.auth()
+        // Initialize Firebase and Firestore database
+        
         database = Firestore.firestore()
         plantList = [Plant]()
-        
+
         super.init()
-        
-        Task {
-            do {
-                let authDataResult = try await authController.signInAnonymously()
-                currentUser = authDataResult.user
-            } catch {
-                fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
-            }
-            self.setupPlantListener()
-        }
+
+        self.setupPlantListener()
     }
 
-    var authController: Auth
     var database: Firestore
     var plantsRef: CollectionReference?
-    var currentUser: FirebaseAuth.User?
-    
+
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)
         listener.onAllPlantsChange(change: .update, plants: plantList)
     }
-    
+
     func removeListener(listener: DatabaseListener) {
         listeners.removeDelegate(listener)
     }
-    
+
     func addPlant(name: String, soil: String, fertilizer: String, lastFertilized: Date, notes: String, image: UIImage, wateringRecords: [Date], completion: @escaping (Error?) -> Void) {
         let plantId = UUID().uuidString
         let imageRef = Storage.storage().reference().child("plants/\(plantId).jpg")
@@ -55,7 +50,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid image data"]))
             return
         }
-        
+
         imageRef.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
                 completion(error)
@@ -113,7 +108,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             completion(plants, nil)
         }
     }
-    
+
     func searchPlants(query: String, completion: @escaping ([Plant]?, Error?) -> Void) {
         database.collection("plants").whereField("name", isGreaterThanOrEqualTo: query).whereField("name", isLessThanOrEqualTo: query + "\u{f8ff}").getDocuments { snapshot, error in
             if let error = error {
@@ -143,7 +138,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             self.parsePlantsSnapshot(snapshot: querySnapshot)
         }
     }
-    
+
     func parsePlantsSnapshot(snapshot: QuerySnapshot) {
         snapshot.documentChanges.forEach { change in
             var plant: Plant
@@ -168,5 +163,3 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
 }
-
-
