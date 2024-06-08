@@ -20,6 +20,9 @@
 		BB963C1E2C0E203C00BE5241 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB963C1D2C0E203C00BE5241 /* GoogleService-Info.plist */; };
 		BB963C202C0F4B8700BE5241 /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB963C1F2C0F4B8700BE5241 /* AddPlantViewController.swift */; };
 		BB97B0462C13472200008D03 /* AddPlantDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97B0452C13472200008D03 /* AddPlantDelegate.swift */; };
+		BB97B0692C1430E400008D03 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97B0682C1430E400008D03 /* Task.swift */; };
+		BB97B06B2C14370600008D03 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97B06A2C14370600008D03 /* TaskTableViewController.swift */; };
+		BB97B06D2C14374800008D03 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97B06C2C14374800008D03 /* AddTaskViewController.swift */; };
 		BBB65FAE2BFED132000396EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65FAD2BFED132000396EA /* AppDelegate.swift */; };
 		BBB65FB02BFED132000396EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65FAF2BFED132000396EA /* SceneDelegate.swift */; };
 		BBB65FB22BFED132000396EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65FB12BFED132000396EA /* ViewController.swift */; };
@@ -44,6 +47,9 @@
 		BB963C1D2C0E203C00BE5241 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB963C1F2C0F4B8700BE5241 /* AddPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
 		BB97B0452C13472200008D03 /* AddPlantDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantDelegate.swift; sourceTree = "<group>"; };
+		BB97B0682C1430E400008D03 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		BB97B06A2C14370600008D03 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		BB97B06C2C14374800008D03 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		BBB65FAA2BFED132000396EA /* Pare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB65FAD2BFED132000396EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBB65FAF2BFED132000396EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +128,9 @@
 				BB7FC62B2C0D394400379E34 /* FirebaseController.swift */,
 				BB963C1F2C0F4B8700BE5241 /* AddPlantViewController.swift */,
 				BB97B0452C13472200008D03 /* AddPlantDelegate.swift */,
+				BB97B0682C1430E400008D03 /* Task.swift */,
+				BB97B06A2C14370600008D03 /* TaskTableViewController.swift */,
+				BB97B06C2C14374800008D03 /* AddTaskViewController.swift */,
 			);
 			path = Pare;
 			sourceTree = "<group>";
@@ -223,8 +232,10 @@
 				BBFA607D2BFEDFA300119FED /* VolumeData.swift in Sources */,
 				BBDC3A902C10AAF500245A80 /* AddPlantDetailViewController.swift in Sources */,
 				BBB65FB22BFED132000396EA /* ViewController.swift in Sources */,
+				BB97B06B2C14370600008D03 /* TaskTableViewController.swift in Sources */,
 				BBB65FAE2BFED132000396EA /* AppDelegate.swift in Sources */,
 				BB0A41572C0B178F00B16CB6 /* JournalViewController.swift in Sources */,
+				BB97B06D2C14374800008D03 /* AddTaskViewController.swift in Sources */,
 				BBFA60832BFEEE1400119FED /* PlantDetailViewController.swift in Sources */,
 				BB963C1C2C0E174700BE5241 /* DatabaseProtocol.swift in Sources */,
 				BBFA607F2BFEDFDF00119FED /* PlantData.swift in Sources */,
@@ -233,6 +244,7 @@
 				BBFA60812BFEE71200119FED /* SearchPlantsTableViewController.swift in Sources */,
 				BB0A415D2C0B191900B16CB6 /* journalCollectionViewCell.swift in Sources */,
 				BBFA60772BFEDB4500119FED /* Pare-DataModel.xcdatamodeld in Sources */,
+				BB97B0692C1430E400008D03 /* Task.swift in Sources */,
 				BB7FC6302C0D3E0E00379E34 /* MulticaseDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

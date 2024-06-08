@@ -35,4 +35,7 @@ protocol DatabaseProtocol: AnyObject
     func searchPlants(query: String, completion: @escaping ([JournalPlant]?, Error?) -> Void)
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
+    func fetchTasks(completion: @escaping ([Task]?, Error?) -> Void)
+   func addTask(_ task: Task, completion: @escaping (Error?) -> Void)
+   func completeTask(_ task: Task, completion: @escaping (Error?) -> Void)
 }

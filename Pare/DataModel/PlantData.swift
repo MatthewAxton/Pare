@@ -1,6 +1,6 @@
 import UIKit
 
-class PlantData: NSObject, Decodable {
+class PlantData: NSObject, Codable {
     var id: Int?
     var commonName: String?
     var scientificName: [String]?
@@ -10,30 +10,18 @@ class PlantData: NSObject, Decodable {
     var sunlight: [String]?
     var defaultImage: DefaultImage?
 
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: PlantKeys.self)
-        id = try container.decodeIfPresent(Int.self, forKey: .id)
-        commonName = try container.decodeIfPresent(String.self, forKey: .commonName)
-        scientificName = try container.decodeIfPresent([String].self, forKey: .scientificName)
-        otherNames = try container.decodeIfPresent([String].self, forKey: .otherName)
-        cycle = try container.decodeIfPresent(String.self, forKey: .cycle)
-        watering = try container.decodeIfPresent(String.self, forKey: .watering)
-        sunlight = try container.decodeIfPresent([String].self, forKey: .sunlight)
-        defaultImage = try container.decodeIfPresent(DefaultImage.self, forKey: .defaultImage)
-    }
-
-    private enum PlantKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case commonName = "common_name"
         case scientificName = "scientific_name"
-        case otherName = "other_name"
+        case otherNames = "other_name"
         case cycle
         case watering
         case sunlight
         case defaultImage = "default_image"
     }
 
-    struct DefaultImage: Decodable {
+    struct DefaultImage: Codable {
         let license: Int?
         let licenseName: String?
         let licenseURL: String?

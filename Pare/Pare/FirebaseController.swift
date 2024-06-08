@@ -13,60 +13,59 @@ import FirebaseStorage
 import UIKit
 
 class FirebaseController: NSObject, DatabaseProtocol {
-    func cleanup() {
-        
-    }
-    
-    func addPlant(name: String, soil: String, fertilizer: String, lastFertilized: Date, notes: String, image: UIImage, wateringRecords: [Date], completion: @escaping ((any Error)?) -> Void) {
-        let plantRef = database.collection("plants").document()
-        let plantId = plantRef.documentID
-        
-        let plant = JournalPlant(
-            id: plantId,
-            name: name,
-            soil: soil,
-            fertilizer: fertilizer,
-            lastFertilized: lastFertilized,
-            notes: notes,
-            imageUrl: "",
-            wateringRecords: wateringRecords
-        )
-
-        do {
-            try plantRef.setData(from: plant) { error in
-                completion(error)
-            }
-        } catch let error {
-            completion(error)
-        }
-    }
     
     var listeners = MulticastDelegate<DatabaseListener>()
     var plantList: [JournalPlant] = []
+    var taskList: [Task] = []
     var database: Firestore
     var plantsRef: CollectionReference?
-
+    var tasksRef: CollectionReference?
+    
     override init() {
-
         database = Firestore.firestore()
         plantsRef = database.collection("plants")
+        tasksRef = database.collection("tasks")
         plantList = []
-
+        taskList = []
         super.init()
-
         self.setupPlantListener()
     }
+    
+    func cleanup() {}
+    
+    // MARK: - Plants
+    
+    func addPlant(name: String, soil: String, fertilizer: String, lastFertilized: Date, notes: String, image: UIImage, wateringRecords: [Date], completion: @escaping ((any Error)?) -> Void) {
+        uploadImage(image) { imageUrl, error in
+            guard let imageUrl = imageUrl, error == nil else {
+                completion(error)
+                return
+            }
+            
+            let plantRef = self.database.collection("plants").document()
+            let plantId = plantRef.documentID
+            
+            let plant = JournalPlant(
+                id: plantId,
+                name: name,
+                soil: soil,
+                fertilizer: fertilizer,
+                lastFertilized: lastFertilized,
+                notes: notes,
+                imageUrl: imageUrl,
+                wateringRecords: wateringRecords
+            )
 
-    func addListener(listener: DatabaseListener) {
-        listeners.addDelegate(listener)
-        listener.onAllPlantsChange(change: .update, plants: plantList)
+            do {
+                try plantRef.setData(from: plant) { error in
+                    completion(error)
+                }
+            } catch let error {
+                completion(error)
+            }
+        }
     }
-
-    func removeListener(listener: DatabaseListener) {
-        listeners.removeDelegate(listener)
-    }
-
- 
+    
     func fetchPlants(completion: @escaping ([JournalPlant]?, Error?) -> Void) {
         database.collection("plants").getDocuments { snapshot, error in
             if let error = error {
@@ -171,4 +170,63 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
         }
     }
+    
+    // MARK: - Tasks
+    
+    func fetchTasks(completion: @escaping ([Task]?, Error?) -> Void) {
+        database.collection("tasks").getDocuments { snapshot, error in
+             if let error = error {
+                 print("Error fetching tasks from Firebase: \(error)")
+                 completion(nil, error)
+                 return
+             }
+
+             guard let documents = snapshot?.documents else {
+                 print("No tasks found in Firebase.")
+                 completion([], nil)
+                 return
+             }
+
+             let tasks = documents.compactMap { doc -> Task? in
+                 return try? doc.data(as: Task.self)
+             }
+             print("Tasks fetched from Firebase: \(tasks.count)")
+             completion(tasks, nil)
+         }
+    }
+    
+    func addTask(_ task: Task, completion: @escaping (Error?) -> Void) {
+        do {
+            let _ = try tasksRef?.addDocument(from: task, completion: completion)
+        } catch let error {
+            completion(error)
+        }
+    }
+    
+    func completeTask(_ task: Task, completion: @escaping (Error?) -> Void) {
+        var updatedTask = task
+        updatedTask.isCompleted = true
+        
+        do {
+            try tasksRef?.document(task.id ?? "").setData(from: updatedTask) { error in
+                completion(error)
+            }
+        } catch let error {
+            completion(error)
+        }
+    }
+    
+    func addListener(listener: DatabaseListener) {
+        listeners.addDelegate(listener)
+        listener.onAllPlantsChange(change: .update, plants: plantList)
+    }
+
+    func removeListener(listener: DatabaseListener) {
+        listeners.removeDelegate(listener)
+    }
 }
+
+
+
+
+
