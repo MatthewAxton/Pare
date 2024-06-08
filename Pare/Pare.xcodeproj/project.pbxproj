@@ -19,6 +19,7 @@
 		BB963C1C2C0E174700BE5241 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB963C1B2C0E174700BE5241 /* DatabaseProtocol.swift */; };
 		BB963C1E2C0E203C00BE5241 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB963C1D2C0E203C00BE5241 /* GoogleService-Info.plist */; };
 		BB963C202C0F4B8700BE5241 /* AddPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB963C1F2C0F4B8700BE5241 /* AddPlantViewController.swift */; };
+		BB97B0462C13472200008D03 /* AddPlantDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97B0452C13472200008D03 /* AddPlantDelegate.swift */; };
 		BBB65FAE2BFED132000396EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65FAD2BFED132000396EA /* AppDelegate.swift */; };
 		BBB65FB02BFED132000396EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65FAF2BFED132000396EA /* SceneDelegate.swift */; };
 		BBB65FB22BFED132000396EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65FB12BFED132000396EA /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 		BB963C1B2C0E174700BE5241 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		BB963C1D2C0E203C00BE5241 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB963C1F2C0F4B8700BE5241 /* AddPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantViewController.swift; sourceTree = "<group>"; };
+		BB97B0452C13472200008D03 /* AddPlantDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantDelegate.swift; sourceTree = "<group>"; };
 		BBB65FAA2BFED132000396EA /* Pare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB65FAD2BFED132000396EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBB65FAF2BFED132000396EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				BB0A41672C0C982F00B16CB6 /* Journal.swift */,
 				BB7FC62B2C0D394400379E34 /* FirebaseController.swift */,
 				BB963C1F2C0F4B8700BE5241 /* AddPlantViewController.swift */,
+				BB97B0452C13472200008D03 /* AddPlantDelegate.swift */,
 			);
 			path = Pare;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			files = (
 				BB963C202C0F4B8700BE5241 /* AddPlantViewController.swift in Sources */,
 				BB7FC62C2C0D394400379E34 /* FirebaseController.swift in Sources */,
+				BB97B0462C13472200008D03 /* AddPlantDelegate.swift in Sources */,
 				BBFA607D2BFEDFA300119FED /* VolumeData.swift in Sources */,
 				BBDC3A902C10AAF500245A80 /* AddPlantDetailViewController.swift in Sources */,
 				BBB65FB22BFED132000396EA /* ViewController.swift in Sources */,

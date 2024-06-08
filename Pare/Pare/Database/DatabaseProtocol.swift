@@ -13,7 +13,7 @@ import FirebaseStorage
 
 protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType { get set }
-    func onAllPlantsChange(change: DatabaseChange, plants: [Plant])
+    func onAllPlantsChange(change: DatabaseChange, plants: [JournalPlant])
 }
 
 enum DatabaseChange {
@@ -31,8 +31,8 @@ protocol DatabaseProtocol: AnyObject
 {
     func cleanup()
     func addPlant(name: String, soil: String, fertilizer: String, lastFertilized: Date, notes: String, image: UIImage, wateringRecords: [Date], completion: @escaping (Error?) -> Void)
-    func fetchPlants(completion: @escaping ([Plant]?, Error?) -> Void)
-    func searchPlants(query: String, completion: @escaping ([Plant]?, Error?) -> Void)
+    func fetchPlants(completion: @escaping ([JournalPlant]?, Error?) -> Void)
+    func searchPlants(query: String, completion: @escaping ([JournalPlant]?, Error?) -> Void)
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
 }

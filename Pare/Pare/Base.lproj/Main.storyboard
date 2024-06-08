@@ -30,46 +30,51 @@
             <objects>
                 <viewController id="h6k-yk-GzK" customClass="JournalViewController" customModule="Pare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pb2-z4-9aH">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="j5m-O4-QpG">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RNC-PQ-uZN">
-                                    <size key="itemSize" width="201" height="201"/>
+                                    <size key="itemSize" width="174" height="220"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="journalCollectionViewCell" id="32M-9P-yJt" customClass="journalCollectionViewCell" customModule="Pare" customModuleProvider="target">
-                                        <rect key="frame" x="96" y="0.0" width="201" height="201"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="174" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Gy5-w4-WDz">
-                                            <rect key="frame" x="0.0" y="0.0" width="201" height="201"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="174" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKv-nr-ij9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="201" height="146"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Woody" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-Jz-74n">
-                                                    <rect key="frame" x="8" y="163" width="185" height="21"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKv-nr-ij9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="220"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="AmD-v7-2go"/>
+                                                        <constraint firstAttribute="height" constant="20" id="HwD-1C-fid"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Mvy-Qw-wfq"/>
                                                     </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Woody" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-Jz-74n">
+                                                    <rect key="frame" x="6" y="92" width="158" height="160"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="FDD-Jz-74n" firstAttribute="top" secondItem="WKv-nr-ij9" secondAttribute="bottom" constant="17" id="7zf-gD-8GW"/>
-                                                <constraint firstItem="FDD-Jz-74n" firstAttribute="leading" secondItem="Gy5-w4-WDz" secondAttribute="leading" constant="8" id="8b4-Nm-lsC"/>
-                                                <constraint firstAttribute="trailing" secondItem="FDD-Jz-74n" secondAttribute="trailing" constant="8" id="suF-ki-oyd"/>
+                                                <constraint firstAttribute="trailing" secondItem="WKv-nr-ij9" secondAttribute="trailing" id="GRs-Qw-wnC"/>
+                                                <constraint firstItem="FDD-Jz-74n" firstAttribute="top" secondItem="Gy5-w4-WDz" secondAttribute="top" constant="8" id="PY8-hs-g2i"/>
+                                                <constraint firstAttribute="trailing" secondItem="FDD-Jz-74n" secondAttribute="trailing" constant="8" id="W5c-Lo-1vR"/>
+                                                <constraint firstAttribute="trailing" secondItem="FDD-Jz-74n" secondAttribute="trailing" constant="8" id="ZHV-Qa-RvB"/>
+                                                <constraint firstItem="WKv-nr-ij9" firstAttribute="top" secondItem="Gy5-w4-WDz" secondAttribute="top" id="aLY-fq-WTW"/>
+                                                <constraint firstItem="WKv-nr-ij9" firstAttribute="leading" secondItem="Gy5-w4-WDz" secondAttribute="leading" id="faP-jD-lLg"/>
+                                                <constraint firstAttribute="bottom" secondItem="WKv-nr-ij9" secondAttribute="bottom" id="g7T-9i-hEE"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="201" height="201"/>
+                                        <size key="customSize" width="174" height="220"/>
                                         <connections>
                                             <outlet property="journalLabel" destination="FDD-Jz-74n" id="Heu-EH-9IQ"/>
                                             <outlet property="journalPhoto" destination="WKv-nr-ij9" id="Fxw-Yv-Ib0"/>
@@ -81,10 +86,10 @@
                         <viewLayoutGuide key="safeArea" id="OL7-1m-ZHA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OL7-1m-ZHA" firstAttribute="bottom" secondItem="j5m-O4-QpG" secondAttribute="bottom" id="6c8-ys-Odz"/>
-                            <constraint firstItem="j5m-O4-QpG" firstAttribute="top" secondItem="OL7-1m-ZHA" secondAttribute="top" id="JE1-HD-gRa"/>
-                            <constraint firstItem="OL7-1m-ZHA" firstAttribute="trailing" secondItem="j5m-O4-QpG" secondAttribute="trailing" id="Mmq-Rs-wAy"/>
-                            <constraint firstItem="j5m-O4-QpG" firstAttribute="leading" secondItem="OL7-1m-ZHA" secondAttribute="leading" id="o83-CL-21K"/>
+                            <constraint firstItem="j5m-O4-QpG" firstAttribute="bottom" secondItem="OL7-1m-ZHA" secondAttribute="bottom" id="1Hf-bH-aj4"/>
+                            <constraint firstItem="j5m-O4-QpG" firstAttribute="trailing" secondItem="OL7-1m-ZHA" secondAttribute="trailing" id="JRn-qL-Tx8"/>
+                            <constraint firstItem="j5m-O4-QpG" firstAttribute="leading" secondItem="OL7-1m-ZHA" secondAttribute="leading" id="u6e-Tr-TcZ"/>
+                            <constraint firstItem="j5m-O4-QpG" firstAttribute="top" secondItem="OL7-1m-ZHA" secondAttribute="top" id="y6y-0C-Lkk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Your Plants" id="7R8-oh-zJf">
@@ -107,11 +112,11 @@
             <objects>
                 <viewController id="EV3-8Z-AoN" customClass="AddPlantViewController" customModule="Pare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YFV-ys-dzg">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="g2e-5g-WRH">
-                                <rect key="frame" x="0.0" y="122" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="19" width="393" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Rsb-GP-YXR"/>
                                 </constraints>
@@ -171,7 +176,7 @@
             <objects>
                 <viewController id="xt2-2j-45v" customClass="AddPlantDetailViewController" customModule="Pare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8uq-kg-wEy">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="91w-Zs-fgZ">
@@ -192,6 +197,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="xt2-2j-45v" eventType="touchUpInside" id="ij4-SZ-t9T"/>
+                                    <segue destination="h6k-yk-GzK" kind="show" identifier="addPlantSegue" id="u3M-NT-Gqn"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CommonName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epS-sK-WnE">
@@ -431,6 +437,21 @@
             </objects>
             <point key="canvasLocation" x="1163" y="-2"/>
         </scene>
+        <!--JournalPlantDetailViewController-->
+        <scene sceneID="0VO-Yd-op8">
+            <objects>
+                <viewController title="JournalPlantDetailViewController" id="9rI-42-AZi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4lO-k2-0PX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Y0y-l7-eeQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TzT-GD-aA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2344" y="30"/>
+        </scene>
         <!--Journal-->
         <scene sceneID="eh1-6v-LSi">
             <objects>
@@ -451,6 +472,10 @@
             <point key="canvasLocation" x="382" y="1044"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lZ7-QP-szh"/>
+        <segue reference="u3M-NT-Gqn"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book.pages" catalog="system" width="107" height="128"/>
         <image name="book.pages.fill" catalog="system" width="107" height="128"/>

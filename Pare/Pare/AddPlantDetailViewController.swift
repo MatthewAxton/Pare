@@ -16,8 +16,10 @@ class AddPlantDetailViewController: UIViewController {
     
     
     @IBOutlet weak var saveButton: UIButton!
+   
     
     var plant: PlantData?
+    weak var delegate: AddPlantDelegate?
     weak var databaseController: DatabaseProtocol?
     
     override func viewDidLoad() {
@@ -51,22 +53,25 @@ class AddPlantDetailViewController: UIViewController {
         
         // Safely unwrap optional values
         let commonName = plant.commonName ?? "Unknown"
-        let soil = "Soil type here"  // This is a placeholder, replace with actual value if needed
-        let fertilizer = "Fertilizer info here"  // This is a placeholder, replace with actual value if needed
+        let soil = "Soil type here"  // Placeholder, replace with actual value if needed
+        let fertilizer = "Fertilizer info here"  // Placeholder, replace with actual value if needed
         let imageUrl = plant.defaultImage?.originalURL ?? ""
+ 
         let lastFertilized = Date()  // Placeholder, replace with actual value if needed
         let notes = "Additional notes here"  // Placeholder, replace with actual value if needed
         
-        let newPlant = Plant(
-            id: UUID().uuidString,
+        let newPlant = JournalPlant(
+            
+            
             name: commonName,
             soil: soil,
             fertilizer: fertilizer,
             lastFertilized: lastFertilized,
             notes: notes,
-            imageUrl: imageUrl,
+            imageUrl: "",
             wateringRecords: []
         )
+        print("Attempting to add plant: \(newPlant)")
         
         databaseController?.addPlant(
             name: newPlant.name!,
@@ -80,6 +85,7 @@ class AddPlantDetailViewController: UIViewController {
             if let error = error {
                 print("Error adding plant: \(error)")
             } else {
+                self.delegate?.didAddPlant(newPlant)
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
