@@ -10,7 +10,8 @@ import UIKit
 
 class JournalViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, AddPlantDelegate {
     
-
+    private let desiredImageSize = CGSize(width: 300, height: 300)
+    
     @IBOutlet weak var journalCollectionView: UICollectionView!
     var plants: [JournalPlant] = []
      let databaseService: DatabaseProtocol = FirebaseController()
@@ -52,8 +53,10 @@ class JournalViewController: UIViewController, UICollectionViewDataSource, UICol
          if let imageUrl = plant.imageUrl, let url = URL(string: imageUrl) {
              URLSession.shared.dataTask(with: url) { data, _, error in
                  if let data = data {
-                     DispatchQueue.main.async {
-                         cell.journalPhoto.image = UIImage(data: data)
+                     if let image = UIImage(data: data) {
+                         let resizedImage = self.resizeImage(image, targetSize: self.desiredImageSize)
+                         cell.journalPhoto.image = resizedImage
+                         
                      }
                  }
              }.resume()
@@ -72,6 +75,29 @@ class JournalViewController: UIViewController, UICollectionViewDataSource, UICol
              destinationVC.delegate = self
          }
      }
+    
+    private func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        var newSize: CGSize
+        if widthRatio > heightRatio {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage ?? image
+    }
 
      // MARK: - AddPlantDelegate
      func didAddPlant(_ plant: JournalPlant) {
